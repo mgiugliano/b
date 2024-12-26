@@ -29,7 +29,18 @@
 \usepackage{newtxtext}               %
 \usepackage[varvw]{newtxmath}       % selects Times Roman as basic font
 
-\usepackage{wiki}
+% \makeatletter
+% \def\starparse{\@ifnextchar*{\bfstarx}{\itstar}}
+% \def\bfstarx#1{\@ifnextchar*{\bfitstar\@gobble}{\bfstar}}
+% \makeatother
+% \def\itstar#1*{\textit{#1}\starON}
+% \def\bfstar#1**{\textbf{#1}\starON}
+% \def\bfitstar#1***{\textbf{\textit{#1}}\starON}
+% \def\starON{\catcode`\*=\active}
+% \def\starOFF{\catcode`\*=12}
+% \starON
+% \def*{\starOFF \starparse}
+% \starOFF
 
 % see the list of further useful packages
 % in the Reference Guide

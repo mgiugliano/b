@@ -1,15 +1,28 @@
-\chapter{Excitability and How to Model It}
+\chapter{On Excitability and How to Model It}
 \label{excitab} % Always give a unique label
 \chaptermark{Excitability}
 
 
-\abstract{This chapter presents the basic principles of excitability, under the perspective of how it may be described and explored with models. I will be mostly referring to the generation of the \texit{action potential},which is a electrical pulse that travels along the membrane of excitable cells in the nervous system, muscles, heart, and the endocrine system. The way these pulses are ignited, propagated through space, and transformed is a fascinating outcome of natural evolution, emerged as a rapid communication mean across cells and tissues, as well as at the subcellular level.}
+\abstract{This chapter presents the basic principles of cell excitability, under the perspective of how it may be described and explored with models. I will be mostly referring to the generation of \texit{action potentials},which are electrical pulses that travel along the membrane of cells in the nervous system, muscles, heart, and the endocrine system. The way these pulses ignite, propagate through space, and are transformed into chemical signals is a fascinating outcome of natural evolution, emerging as an effective rapid mean of communication across cells and tissues, as well as at the subcellular level.}
 
 \section{Introduction}\label{sec:1}
 To be written\dots
 
 
-\section{Reduced Models of Excitability}\label{sec:2}
+\begin{figure}[t]
+	\sidecaption[t]
+	\centering
+	\includegraphics[scale=1.5]{Hodgkin_Huxley.jpg}
+	%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+	\caption{Alan Hodgkin (1914-1998) and Huxley (1917-2012).}
+	\label{fig:HodgkinHuxley}       % Give a unique label
+	\end{figure}
+
+
+\section{Conductance-based Models}\label{sec:2}
+
+
+\section{Reduced Models of Excitability}\label{sec:3}
 
 \subsection{"As simple as possible, but not simpler"}
 This title is a portion of a famous quote, by Albert Einstein. Besides scientists, I have been always fascinated by the insights of the philosophers (of Science). Particularly, I found remarkable Karl Popper's recommendation for any scientific theory: it must be easily falsifiable if one wants it to have higher chances to be correct. Today this concept is in the DNA of researchers across many disciplines. Popper exemplified his point criticizing Astrology, for its large number and variety of presumed \texit{zodiacal} influences that make it likely to account \textit{a posteriori} for almost any outcome of human everyday life events. However, the very same inherent complications makes it very hard to identify a scenario to challenge Astrology's predictions! 
@@ -17,6 +30,17 @@ This title is a portion of a famous quote, by Albert Einstein. Besides scientist
 A similar feeling is commonly embraced by physicists, who almost always first initiate a theoretical inquiries with a minimal description and with the simplest possible scenario of a physical system. Also data scientists and statisticians have the same concern, and rephrase it in terms of the risk of overfitting for a model with too many degrees of freedom when reproducing a dataset. If this happens, it is unlikely that the model will generalize to data it was never trained on.
 
 In Computational Neuroscience, we should then always be mindful when working with a very complicated description of a biophysical phenomenon, and when a very large number of parameters are a requirement of a model, even beyond the feasibility of the identification of all its parameters in \textit{ad hoc} experiments. Hopefully, we should make our models as simple as possible, and we should set the condition for its predictions to be falsified: that is when we learn, in a virtual interaction between experiments and theory.
+
+\begin{figure}[t]
+	\sidecaption[t]
+	\centering
+	\includegraphics[scale=.75]{Popper_Einstein_Lapique.jpg}
+	%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
+	\caption{Karl Popper (1902-1994), Albert Einstein (1879-1955), and Louis Lapique (1866-1952)}
+	\label{fig:PopperEinsteinLapique}       % Give a unique label
+	\end{figure}
+
+
 
 There is however another important consideration I would like to do. This originally escaped my own deep understanding and appreciation when I was a young student. At that time, after learning about the Hodgkin and Huxley seminal work I felt empowered to imagine its arbitrary extension \textit{in principle}: any number of additional ionic currents could be included using Markov kinetic schemes, a more accurate description of cell's morphology included by cable theory, electrodiffusion for a variety of ionic concentrations coupled with the other equations, and so on. As computers were used to solve the model equations and perform numerical simulations, I thought that only the sky was the limit. My optimism was perhaps only partly correct. As for weather forecast, I imagined that large scale supercomputers could \textit{crunch numbers} and solve a huge number of equations, describing a very complex (weather) model, and ultimately produce predictions for atmospheric physical variables in the immediate and near future. However, even assuming that all the equations and parameters and are known and do capture accurately the underlying physical reality, there are two problems: 1) \textit{number crunching} alone requires time to be completed, sometimes a substantial amount of time; 2) simulating a model on a digital computer requires iteratively feeding partial numerical results into a series of mathematical expressions, and errors may accumulate. Both issues come as computers are intrinsically discrete \textit{in time} and limited in the resolution for numerical representation is limited, so that rounding errors or imperfect numerical processing might decrease our confidence over model behavior as the simulated time goes by.
 
@@ -35,7 +59,7 @@ In addition, models so rich and complicated might further make it hard for the s
 
 
 
-\subsection{From conductance-based models to Integrate-and-Fire models}
+\subsection{From conductance-based to Integrate-and-Fire models}
 
 Those who are mathematically inclined, may appreciate a very early elegant presentation, by Larry Abbott and Kepler (??), deriving integrate-and-fire models equations from conductance-based descriptions. On a first approximation, you are separating time scales associated to the many state variable of a neuron model. Focusing for instance only on the role of ionic conductances contributing to the initiation of an action potential, a similar procedure rewrites the charge-balance equation.
 

@@ -3,9 +3,9 @@
 \chaptermark{Excitability}
 
 
-\abstract{This chapter presents the basic principles of cell excitability, under the perspective of how it may be described and explored with models. I will be mostly referring to the generation of \texit{action potentials},which are electrical pulses that travel along the membrane of cells in the nervous system, muscles, heart, and the endocrine system. The way these pulses ignite, propagate through space, and are transformed into chemical signals is a fascinating outcome of natural evolution, emerging as an effective rapid mean of communication across cells and tissues, as well as at the subcellular level.}
+\abstract{This chapter presents the basic principles of cell excitability, under the perspective of how it may be described and explored with models. I will be mostly referring to the generation of \textit{action potentials},which are electrical pulses that travel along the membrane of cells in the nervous system, muscles, heart, and the endocrine system. The way these pulses ignite, propagate through space, and are transformed into chemical signals is a fascinating outcome of natural evolution, emerging as an effective rapid mean of communication across cells and tissues, as well as at the subcellular level.}
 
-\section{Introduction}\label{sec:1}
+\section{Introduction}\label{sec3:1}
 To be written\dots
 
 
@@ -14,39 +14,55 @@ To be written\dots
 	\centering
 	\includegraphics[scale=1.5]{Hodgkin_Huxley.jpg}
 	%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
-	\caption{Alan Hodgkin (1914-1998) and Huxley (1917-2012).}
-	\label{fig:HodgkinHuxley}       % Give a unique label
+	\caption{Alan Hodgkin (1914--98) and Huxley (1917--2012).}\label{fig3:HodgkinHuxley}       % Give a unique label
 	\end{figure}
 
+\section{Going beyond the passive membranes bottlenecks}
 
-\section{Conductance-based Models}\label{sec:2}
+\subsection{The conservation of charge: old principles and new insights}
+
+\subsection{Temporal Integration}
+
+\subsection{Nobel-prize winning intuitions: active and passive ionic permeability}
+
+\subsection{Mass-action law and chemical reactions}
+\subsection{Opening and closing of ion channels in the language of kinetic schemes}
 
 
-\section{Reduced Models of Excitability}\label{sec:3}
 
-\subsection{"As simple as possible, but not simpler"}
-This title is a portion of a famous quote, by Albert Einstein. Besides scientists, I have been always fascinated by the insights of the philosophers (of Science). Particularly, I found remarkable Karl Popper's recommendation for any scientific theory: it must be easily falsifiable if one wants it to have higher chances to be correct. Today this concept is in the DNA of researchers across many disciplines. Popper exemplified his point criticizing Astrology, for its large number and variety of presumed \texit{zodiacal} influences that make it likely to account \textit{a posteriori} for almost any outcome of human everyday life events. However, the very same inherent complications makes it very hard to identify a scenario to challenge Astrology's predictions! 
 
-A similar feeling is commonly embraced by physicists, who almost always first initiate a theoretical inquiries with a minimal description and with the simplest possible scenario of a physical system. Also data scientists and statisticians have the same concern, and rephrase it in terms of the risk of overfitting for a model with too many degrees of freedom when reproducing a dataset. If this happens, it is unlikely that the model will generalize to data it was never trained on.
+\section{The Conductance Based Models for biophysical accuracy}\label{sec3:2}
+\subsection{The Hodgkin Huxley Model: a 60 years old milestone for the field}
+\subsection{Morris-Lecar: a balance between biophysical plausibility and tractability}
+\subsection{On the intrinsic variability of spike timing}
+\subsection{Ion channels flickering and a first encounter with noise in neural systems}
 
-In Computational Neuroscience, we should then always be mindful when working with a very complicated description of a biophysical phenomenon, and when a very large number of parameters are a requirement of a model, even beyond the feasibility of the identification of all its parameters in \textit{ad hoc} experiments. Hopefully, we should make our models as simple as possible, and we should set the condition for its predictions to be falsified: that is when we learn, in a virtual interaction between experiments and theory.
+\section{Integrate-and-Fire excitability: early insights and modern significance}\label{sec3:3}
+
+\subsection{``As simple as possible, but not simpler''}
+This title is a portion of a famous quote, by Albert Einstein that sticked with me over the years. It is of course not trivial to understand what is the level of simplicity to adopt, in the description of (bio)physical phenomena. I have also been fascinated by the insights of the philosophers (of Science) as Karl Popper. I found remarkable his recommendation for any scientific theory: it must be easily \textit{falsifiable} for it  to have higher chances to be correct. Today this very concept is in the DNA of researchers across many disciplines. Popper exemplified his point criticizing Astrology, for its large number and variety of presumed \textit{zodiacal} influences that make it likely to account \textit{a posteriori} for almost any outcome of human daily life events. However, the very same inherent complications and richness of details and features makes it very hard to identify a scenario to challenge Astrology's predictions! In other words, Astrology is not \texit{simple} at all.
+
+A similar feeling is commonly embraced by physicists, who almost always first initiate a theoretical inquiries with a minimal description and with the simplest possible scenario of a system under consideration. Also data scientists and statisticians have clear in mind the very same concept, and rephrase it in terms of avoiding \texit{overfitting} a model to certain observations or dataset, due to an excessively large number of degrees of freedom when reproducing a dataset. If this happens, it is unlikely that the model will generalize to data it was never trained on.
+
+
+In Computational Neuroscience, we should then always be mindful when adopting a very complicated description of a biophysical phenomenon, and when a very large number of parameters is a critical requirement of a model, even beyond the feasibility of their actual identification from experiments. Hopefully, we should make our models as simple as possible, and we should set the condition for its predictions to be falsified: that is when we learn, in a virtuous interaction between experiments and theory.
 
 \begin{figure}[t]
 	\sidecaption[t]
 	\centering
 	\includegraphics[scale=.75]{Popper_Einstein_Lapique.jpg}
 	%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
-	\caption{Karl Popper (1902-1994), Albert Einstein (1879-1955), and Louis Lapique (1866-1952)}
-	\label{fig:PopperEinsteinLapique}       % Give a unique label
+	\caption{Karl Popper (1902--94), Albert Einstein (1879--1955), and Louis Lapique (1866--1952)}
+	\label{fig3:PopperEinsteinLapique}       % Give a unique label
 	\end{figure}
 
 
 
-There is however another important consideration I would like to do. This originally escaped my own deep understanding and appreciation when I was a young student. At that time, after learning about the Hodgkin and Huxley seminal work I felt empowered to imagine its arbitrary extension \textit{in principle}: any number of additional ionic currents could be included using Markov kinetic schemes, a more accurate description of cell's morphology included by cable theory, electrodiffusion for a variety of ionic concentrations coupled with the other equations, and so on. As computers were used to solve the model equations and perform numerical simulations, I thought that only the sky was the limit. My optimism was perhaps only partly correct. As for weather forecast, I imagined that large scale supercomputers could \textit{crunch numbers} and solve a huge number of equations, describing a very complex (weather) model, and ultimately produce predictions for atmospheric physical variables in the immediate and near future. However, even assuming that all the equations and parameters and are known and do capture accurately the underlying physical reality, there are two problems: 1) \textit{number crunching} alone requires time to be completed, sometimes a substantial amount of time; 2) simulating a model on a digital computer requires iteratively feeding partial numerical results into a series of mathematical expressions, and errors may accumulate. Both issues come as computers are intrinsically discrete \textit{in time} and limited in the resolution for numerical representation is limited, so that rounding errors or imperfect numerical processing might decrease our confidence over model behavior as the simulated time goes by.
+There is however another important consideration I would like to present. This originally escaped my own appreciation as a young student. At that time, after learning about Hodgkin and Huxley's seminal work, I did feel empowered to imagine its arbitrary extension \textit{in principle}: any number of additional ionic currents could be included using Markov kinetic schemes, a more accurate description of cell's morphology could always be captured by cable theory, and electrodiffusion for a variety of ionic concentrations could be easily coupled with all the other equations, to name a few. As computers were used to solve the model equations and perform numerical simulations, I thought that only the sky was the limit. My optimism was perhaps only partly correct. As for weather forecasts, I imagined that large scale supercomputers could \textit{crunch numbers} and solve a huge number of equations, describing any complex (weather) model, and ultimately produce predictions for (atmospheric) physical variables in the immediate and near future. However, even assuming that all the equations and parameters and are known and do capture correctly the underlying physical reality, two problems remain: 1) \textit{number crunching} alone requires time to be completed, sometimes a substantial amount of time; 2) simulating a model on a digital computer requires iteratively feeding partial numerical results into a series of mathematical expressions, and numerical errors may accumulate. Both issues come as computers are intrinsically discrete \textit{in time} and limited in their numerical resolution, so that rounding errors or imperfect numerical processing might decrease our confidence over model behavior as the simulated time goes by. I am also hinting at the possible sensitivity of the model, sometimes called \textit{robustness}, to the precise representation of its parameters or combination of parameters and initial conditions. 
 
-These issues become in my opinion problems, as the the intuition and insights that a computational neuroscientist gains over time, when developing, testing, and exploring their model might be challenged. The time one has to wait for a simulation to complete does unavoidably makes it harder for intuition to develop on how, e.g., changing one parameter affects the subtle behavior of a certain phenomenon. 
+In my humber opinion, these become serious issues, as the the intuition and insights that a computational neuroscientist gains through time, when developing, testing, and exploring their model might be challenged. In fact, the time one has to wait for a simulation to complete does unavoidably makes it harder for a deep intuition to develop on how, e.g., changing one parameter affects the subtle behavior of a certain phenomenon. 
 
-In addition, models so rich and complicated might further make it hard for the scientist to recognize invariants or key mechanisms and principles, as a consequence of the likely mathematical intractability, in terms of derivation of general results.
+As a final central point, rich and complicated models might further make it hard for the scientist to recognize invariants or identify key mechanisms and principles, as they ultimately are hardly mathematical tractable, in terms of derivation of general results.
 
 \begin{figure}[t]
 \sidecaption[t]
@@ -54,7 +70,7 @@ In addition, models so rich and complicated might further make it hard for the s
 \includegraphics[scale=.33]{A}
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
 \caption{Please write your figure caption here}
-\label{fig:A1}       % Give a unique label
+\label{fig3:A1}       % Give a unique label
 \end{figure}
 
 
@@ -75,7 +91,7 @@ A more practical approach to defining 'integrate-and-fire' neurons stems from re
 \includegraphics[scale=.33]{B}
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
 \caption{Please write your figure caption here}
-\label{fig:A2}       % Give a unique label
+\label{fig3:A2}       % Give a unique label
 \end{figure}
 
 
@@ -172,4 +188,15 @@ The choice of which model to use depends on the specific research question and t
 Researchers are continually developing new and improved neuron models, striving to strike an optimal balance between simplicity and realism. These models are essential tools for understanding the complexities of brain function and unraveling the mysteries of neural information processing.
 
 
+\section{Bestiary of Integrate-and-Fire models: take your pick}
+\subsection{The non-linear Integrate-and-Fire models: quadratic and exponential}
+\subsection{Reverse engineering the IF model parameters from experimental data}
+\subsection{The McCullogh-Pitts’ models: an extreme yet rewarding slimming cure}
 
+
+\section{Multi-compartmental models and the relevance of morphology}
+\subsection{Cable Theory and Rall’s model}
+
+\section{How to link the dynamics of ionic concentrations into electrical models}
+
+\section{Which model to use? The choice of model depends on level of analysis}

@@ -5,6 +5,20 @@
 
 \abstract{This chapter presents the basic principles of cell excitability, under the perspective of how it may be described and explored with models. I will be mostly referring to the generation of \textit{action potentials},which are electrical pulses that travel along the membrane of cells in the nervous system, muscles, heart, and the endocrine system. The way these pulses ignite, propagate through space, and are transformed into chemical signals is a fascinating outcome of natural evolution, emerging as an effective rapid mean of communication across cells and tissues, as well as at the subcellular level.}
 
+\vspace{2cm} % Adds 1 centimeter of vertical space
+
+\begin{svgraybox}
+{\bf{Learning objectives}}
+\begin{itemize}
+	\item This is the first item.
+	\item This is the second item.
+	\item You can add as many items as you need.
+	\item Here's another item.
+  \end{itemize}
+\end{svgraybox}
+
+\clearpage
+
 \section{Introduction}\label{sec3:1}
 To be written\dots
 
@@ -40,9 +54,9 @@ To be written\dots
 \section{Integrate-and-Fire excitability: early insights and modern significance}\label{sec3:3}
 
 \subsection{``As simple as possible, but not simpler''}
-This title is a portion of a famous quote, by Albert Einstein that sticked with me over the years. It is of course not trivial to understand what is the level of simplicity to adopt, in the description of (bio)physical phenomena. I have also been fascinated by the insights of the philosophers (of Science) as Karl Popper. I found remarkable his recommendation for any scientific theory: it must be easily \textit{falsifiable} for it  to have higher chances to be correct. Today this very concept is in the DNA of researchers across many disciplines. Popper exemplified his point criticizing Astrology, for its large number and variety of presumed \textit{zodiacal} influences that make it likely to account \textit{a posteriori} for almost any outcome of human daily life events. However, the very same inherent complications and richness of details and features makes it very hard to identify a scenario to challenge Astrology's predictions! In other words, Astrology is not \texit{simple} at all.
+This title is a portion of a famous quote, by Albert Einstein that sticked with me over the years. It is of course not trivial to understand what is the level of simplicity to adopt, in the description of (bio)physical phenomena. I have also been fascinated by the insights of the philosophers (of Science) as Karl Popper. I found remarkable his recommendation for any scientific theory: it must be easily \textit{falsifiable} for it  to have higher chances to be correct. Today this very concept is in the DNA of researchers across many disciplines. Popper exemplified his point criticizing Astrology, for its large number and variety of presumed \textit{zodiacal} influences that make it likely to account \textit{a posteriori} for almost any outcome of human daily life events. However, the very same inherent complications and richness of details and features makes it very hard to identify a scenario to challenge Astrology's predictions! In other words, Astrology is not \textit{simple} at all.
 
-A similar feeling is commonly embraced by physicists, who almost always first initiate a theoretical inquiries with a minimal description and with the simplest possible scenario of a system under consideration. Also data scientists and statisticians have clear in mind the very same concept, and rephrase it in terms of avoiding \texit{overfitting} a model to certain observations or dataset, due to an excessively large number of degrees of freedom when reproducing a dataset. If this happens, it is unlikely that the model will generalize to data it was never trained on.
+A similar feeling is commonly embraced by physicists, who almost always first initiate a theoretical inquiries with a minimal description and with the simplest possible scenario of a system under consideration. Also data scientists and statisticians have clear in mind the very same concept, and rephrase it in terms of avoiding \textit{overfitting} a model to certain observations or dataset, due to an excessively large number of degrees of freedom when reproducing a dataset. If this happens, it is unlikely that the model will generalize to data it was never trained on.
 
 
 In Computational Neuroscience, we should then always be mindful when adopting a very complicated description of a biophysical phenomenon, and when a very large number of parameters is a critical requirement of a model, even beyond the feasibility of their actual identification from experiments. Hopefully, we should make our models as simple as possible, and we should set the condition for its predictions to be falsified: that is when we learn, in a virtuous interaction between experiments and theory.
@@ -200,3 +214,327 @@ Researchers are continually developing new and improved neuron models, striving 
 \section{How to link the dynamics of ionic concentrations into electrical models}
 
 \section{Which model to use? The choice of model depends on level of analysis}
+
+\newpage
+\begin{svgraybox}
+	{\bf{The Dirac's delta function: \(\delta(x)\)}}
+	\\
+
+	\(\delta(x)\) is due to the physicist Paul Dirac and, since its first use in 1930 for Quantum Mechanics, it found many applications in fields as diverse as Engineering and Statistics. It represents an \textit{impulse}: a sudden and extreme increase in the value of some quantity. Think of it as a huge spike, yet restricted to a tiny spot in space or in time. It is also used to express initial conditions or concentrations, when restricted to a sharp position in space or time. Beware! It stretches the concept of regular functions, as \(\sin(x), \ln(x), \cdots \), and it belong to the family of generalized  functions, called \textit{distributions}. An intuitive grasp of \(\delta(x)\) comes from its graph: it is \textit{zero} everywhere over the \(x\)-axis, except at \(x =0\) where it takes an infinite positive value.
+
+	\begin{tikzpicture}
+	\begin{scope}
+	% Draw the axes
+	\draw[->] (-2,0) -- (2,0) node[right] {$x$};
+	\draw[->] (0,-0.5) -- (0,1.5) node[right] {$\delta(x)$};
+  
+	% Draw the Dirac delta function (centered)
+	\draw[->, ultra thick] (0,0) -- (-0,1);
+  
+	% Add 0 to the origin
+	\node[below right] at (0,0) {0};
+	\end{scope}
+
+	\begin{scope}[shift={(5,0)}] % Adjust (5,0) to change the spacing
+	% Draw the axes
+	\draw[->] (-2,0) -- (2,0) node[right] {$x$};
+	\draw[->] (0,-0.5) -- (0,1.5) node[right] {$\delta(x-1)$};
+  
+	% Draw the Dirac delta function (centered)
+	\draw[->, ultra thick] (1,0) -- (1,1);
+  
+	% Add 0 to the origin
+	\node[below] at (1,0) {1};
+	\end{scope}
+  \end{tikzpicture}
+  
+	We can't of course graph infinity. So we used an arrow in the plots above, and placed it where the argument of the delta is zero. Two are the properties we should treasure: 
+	\begin{itemize}
+		\item the \textit{area} below \(\delta(x)\) is \(1\); 
+		\item under the sign of integral, \(\delta(x)\) \textit{kills} the integral! 
+	\end{itemize}	
+	
+	Mathematically, these mean correspondingly 
+
+	\begin{equation}
+		\bullet \int_{ -\infty}^{ +\infty} \delta(x)\ dx\ =\ 1 \ \ \ \ \bullet \int_{ -\infty}^{ +\infty} \delta(x)g(x)\ dx\ =\ g(0) 
+	\end{equation}
+	
+	Thus, even if \(\delta(x)\) reaches infinity at \(x= 0\), it does so over an infinitesimal interval, preserving a finite area. Note that in both definite integrals above, while we used \(-\infty ; +\infty \) as the integration intervals, implying the entire x-axis, we might have used equivalently \((-a\ ;\ a) \), with \(a> 0 \). This works as \(\delta(x)\) is \textit{centered} at \(x= 0\) (where the function \textit{goes nuts}) and zero everywhere else, and even the new interval includes \(0\).  
+	The second is my favorite property: for any well-behaved function \(g(x)\) multiplying \(\delta(x)\) inside an integral, the the Dirac's deltas \textit{extract} the value that \(g(x)\) takes where the \(\delta(x)\) is centered. Once more, for this to hold, the integration interval must include \(x= 0\), the point where \(\delta(x)\) is placed. 
+\end{svgraybox}
+
+
+This is normal text \dots
+
+
+\newpage
+\begin{svgraybox}
+	{\bf{More on Dirac's deltas}}
+
+	For the mathematically inclined, more precise definitions of the Dirac's Delta exist. One is in terms of the limit of a sequence of functions. For instance, we may consider a \textit{square pulse} function, \(\Pi_\Delta(x)\), that is is zero everywhere, with the exception of the interval \((-\Delta/2\ ;\ \Delta/2)\), where it takes the constant value \( 1 / \Delta \). The positive parameter \(\Delta \) specifies how \textit{fat and tall} the square pulse is. As \(\Delta \) becomes smaller and smaller, the peak amplitude of the function grows more and more, while retaining a fixed and finite (i.e., unitary) area. 
+
+	\begin{tikzpicture}
+	\begin{scope}
+	% Draw the axes
+	\draw[->] (-2,0) -- (2,0) node[right] {$x$};
+	\draw[->] (0,-0.5) -- (0,1.5) node[right] {$\Pi_\Delta(x)$};
+  
+  	% Draw the square pulse
+  	\def\width{3}
+  	\draw (-\width/2,0) -- (-\width/2,1/\width) -- (\width/2,1/\width) -- (\width/2,0);
+
+  	% Add labels (optional)
+  	\node[below] at (-\width/2,0) {$-\Delta/2$};
+  	\node[below] at (\width/2,0) {$\Delta/2$};
+  	\node[left] at (0,1.5/\width) {$1/\Delta$};
+	\end{scope}
+
+	\begin{scope}[shift={(5,0)}] % Adjust (5,0) to change the spacing
+	% Draw the axes
+	\draw[->] (-2,0) -- (2,0) node[right] {$x$};
+	\draw[->] (0,-0.5) -- (0,1.5) node[right] {$\Pi_\Delta(x)$};
+  
+  	% Draw the square pulse
+  	\def\width{1}
+  	\draw (-\width/2,0) -- (-\width/2,1/\width) -- (\width/2,1/\width) -- (\width/2,0);
+
+  	% Add labels (optional)
+  	\node[below] at (-\width/2,0) {$-\Delta/2$};
+  	\node[below] at (\width/2,0) {$\Delta/2$};
+  	\node[left] at (0,1.2/\width) {$1/\Delta$};
+	\end{scope}
+  \end{tikzpicture}
+ 
+  In the limit of \(\Delta\) becoming infinitesimal, we can write
+    \begin{equation}
+		\lim_{\Delta \rightarrow 0} \Pi_\Delta(x)\ =\ \delta(x)
+	\end{equation}	
+	
+	Another definition is through the \textit{Fourier's anti-transform} of a constant function. Thinking of the Fourier domain and its physical meaning, a constant means \textit{energy} at all Fourier frequencies. This corresponds intuitively to a infinitely rapid transition, precisely as the \(\Delta(x)\) is. Then, indicating by \(j\) the imaginary unit, we can write
+
+	\begin{equation}
+		\frac{1}{2\pi} \int_{ -\infty}^{ +\infty} e^{ j\ \omega x} d\omega \ =\ \delta(x)
+	\end{equation}	
+
+	For more on the generalized functions, as \(\delta(x)\), see \cite{Saichev:2013}.
+\end{svgraybox}	
+
+
+
+
+\newpage
+\begin{svgraybox}
+	{\bf{On \textit{trains} of Dirac's Deltas}}
+	\\
+
+	It is easy to express mathematically the juxtaposition of two of more Delta functions, \textit{placed} across distinct points along the same \(x\)-axis. For instance, if these are 5 points, say \(x = - 1\), \(x =	1\), \(x = 2\), \(x = 2.5\), and \(x = 7\), then the resulting function, sketched below
+	
+	\begin{tikzpicture}
+	% Draw the axes
+	\draw[->] (-2,0) -- (7.5,0) node[right] {$x$};
+	\draw[->] (0,-0.5) -- (0,1.5) node[right] {};
+  
+	% Draw the Dirac delta function (centered)
+	\draw[->, ultra thick] (-1,0) -- (-1,1);
+	\draw[->, ultra thick] (1,0) -- (1,1);
+	\draw[->, ultra thick] (2,0) -- (2,1);
+	\draw[->, ultra thick] (2.5,0) -- (2.5,1);
+	\draw[->, ultra thick] (7,0) -- (7,1);
+  
+	% Add 0 to the origin
+	\node[below] at (-1,0) {-1};
+	\node[below] at (1,0) {1};
+	\node[below] at (2,0) {2};
+	\node[below] at (2.5,0) {2.5};
+	\node[below] at (7,0) {7};
+  \end{tikzpicture}
+  
+  corresponds mathematically to the algebraic sum of five terms:
+
+  \begin{equation}
+	\delta(x + 1)\ +\ \delta(x - 1)\ +\ \delta(x - 2)\ +\ \delta(x - 2.5)\ +\ \delta(x - 7)
+  \end{equation}
+  
+  This is an immediate consequence of the fact that \(\delta(x)\) is zero almost everywhere, so there is absolutely no \textit{interference} or overlap among the \textit{tails} of each term. Note that shifting horizontally to the right (left) the graph of each Dirac's Delta is done subtracting (adding) the appropriate value to the argument of the \(\delta( \bullet )\). A quick way to crosscheck where each Delta is located is searching the value of $x$ that makes its argument zero (e.g., \(x - 2.5 = 0\), only if \(x = 2.5\)).
+
+\end{svgraybox}	
+ 
+
+
+
+
+\newpage
+\begin{svgraybox}
+	{\bf{Dirac's Deltas as additive \textit{inputs} to a system}}
+	\\
+		\begin{center}
+		\begin{tikzpicture}		
+			% Draw the square
+			\draw[thick] (0.,0.5) rectangle (2,1.5);
+			
+			% Draw the input arrow
+			\draw[->, thick] (-1,1) -- (0,1);
+			
+			% Draw the output arrow
+			\draw[->, thick] (2.,1) -- (3,1);
+			
+			% Add labels
+			\node at (-2.,1) {$\delta(t-t_0)$};
+			\node at (3.5,1) {$f(t)$};
+		\end{tikzpicture}
+		\
+	\end{center}	
+	Consider our \textit{usual} linear o.d.e., say for charge-balance, receptors kinetics, adaptation, synaptic depression, etc. If we \textit{drive} it (e.g., in time) with a Delta, 
+
+	\begin{equation}
+		\frac{d}{dt}f(t) = - f(t)\ + \delta(t - t_0),
+	\end{equation}
+
+	we can get an analytical solution in two steps. First, we consider the solution \(f(t)\) for times \(t\) far from the occurrence time of the Delta. Before \(t_0\) and after \(t_0\), the Delta vanishes and the o.d.e. becomes homogeneous. In both intervals, the solution looks like an exponential decay \(K\ e^ { - t}\), where \(K\) are constants to be identified. Instead, around \(t_0\) we cannot ignore the impulse, but we can integrate both sides of the equation over an infinitesimal interval \textit{around} \(t_0\):  \(t_0^ -\,  ; t_0^+ \). As we finally invoke linearity of the integral operation, with respect to its argument (i.e., the integral of a sum is the sum of the integrals), we obtain
+
+	\begin{equation}
+		\int_{t_0^-}^{t_0^ +} \frac{d}{dt}f(t) dt\ =\ - \int_{t_0^-}^{t_0^ +} f(t) dt\ + \int_{t_0^-}^{t_0^ +} \delta(t - t_0) dt.
+	\end{equation}
+
+	The term on the left-hand side is of course the integral of a perfect differential (i.e., integral and derivative signs \textit{cancel out}). From the fundamental theorem of integral calculus~\cite{ThompsonGardner:1998}, we then write it as: \(f(t_0^+) - f(t_0^-)\). Next, the last term on the right-hand side is \(1\), by definition. Finally, as we generally expect the output \(f(t)\) to be \textit{more continuous} than its input \(\delta(t - t_0)\), the remaining term vanishes: it is the integral of a continuous function over an interval of zero length. These considerations brings us to write a simple algebraic additive \textit{update rule}:
+	
+	\begin{equation}
+		f(t_0^+ )\ =\ f(t_0^-)\ +\ 1 
+	\end{equation}
+
+	\begin{tikzpicture}
+	\begin{scope}
+	\draw[->] (-2,0) -- (2.,0) node[right] {$x$};
+	\draw[->] (0,-0.5) -- (0,1.5) node[right] {};
+  
+	% Draw the Dirac delta function (centered)
+	\draw[-, thick] (1,{exp(-2)}) -- (1,{exp(.1)+exp(-2)});
+	
+	% Draw an exponential function decaying from t_0
+	\draw[domain=-1.5:1, smooth, variable=\x, thick] plot ({\x}, {exp(-((\x+1)))});
+	\draw[domain=1:2, smooth, variable=\x, thick] plot ({\x}, {(exp(.1)+exp(-2))*exp(-((\x-1)))});
+  
+	% Add 0 to the origin
+	\node[below] at (1,0) {$t_0$};
+	\end{scope}	% Draw the axes
+
+	\begin{scope}[shift={(5,0)}] % Adjust (5,0) to change the spacing
+	\draw[->] (-2,0) -- (2.,0) node[right] {$x$};
+	\draw[->] (0,-0.5) -- (0,1.5) node[right] {};
+  
+	% Draw the Dirac delta function (centered)
+	\draw[-, thick] (-0.5,{exp(-0.5)}) -- (-0.5,{exp(.1)+exp(-0.5)});
+	
+	% Draw an exponential function decaying from t_0
+	\draw[domain=-1.5:-0.5, smooth, variable=\x, thick] plot ({\x}, {exp(-((\x+1)))});
+	\draw[domain=-0.5:2, smooth, variable=\x, thick] plot ({\x}, {(exp(1.1)+exp(0.5))*exp(-((\x+1.5)))});
+  
+	% Add 0 to the origin
+	\node[below] at (-0.5,0) {$t_0$};
+	\end{scope}	% Draw the axes
+  \end{tikzpicture}
+
+  Intuitively, an infinite-amplitude input impulse leads to a sudden but finite \textit{jump} in the output, occurring at the time where the impulse occurs. It is then like \textit{adding a fixed quantity} to whatever value \(f(t)\) had immediately before the impulse. Before and after the impulse, the expected decaying exponential dynamics persists.
+\end{svgraybox}	
+ 
+
+
+
+
+
+\newpage
+
+\begin{svgraybox}
+	{\bf{Dirac's Deltas as multiplicative \textit{inputs} to a system}}
+	\\
+
+	If the input Delta acts as a multiplicative input, for instance as  
+
+	\begin{equation}
+		\frac{d}{dt}f(t) = - f(t)\ +\ f(t) \delta(t - t_0),
+	\end{equation}
+
+	we can still get an analytical solution operating in two steps. However, we must now factorize \(f(t)\), separate the variables \(f\) and \(t\), and then integrate over corresponding intervals \textit{around} \(t_0\):  \( (t_0^ -\,  ; t_0^+ ) \) and \( (f_0^ -\,  ; f_0^+ ) \), where \(f_0 = f(t_0)\) if we want to derive some sort of update rule, as in the additive case. 
+	
+	\begin{equation}
+		\int_{f_0^-}^{f_0^+} \frac{df}{f} = \int_{t_0^ -}^{t_0^+} (\delta(t - t_0) - 1)dt.
+	\end{equation}
+
+	The left hand side is solved, recalling that the primitive of \(1/x\) is \(\ln(x)\). We can also use the property that a difference of logs equals the log of the ratio. So we write 
+
+	\begin{equation}
+		\ln \frac{f(t_0^+)}{f_(t_0^-)} = 1,
+	\end{equation}
+
+	where the right-hand side contains only the term \(1 \) corresponding to the area of the Dirac's Delta, as the other term (i.e., the integral of \( -1\) over an interval of zero length) vanished. We then apply the exponential to both sides, making \(f\) explicit and leading to a multiplicative algebraic \textit{update rule}:
+	
+	\begin{equation}
+		f(t_0^+)\ =\ e^{1} f(t_0^-)
+	\end{equation}
+
+	\begin{tikzpicture}
+	\begin{scope}
+	\draw[->] (-2,0) -- (2.,0) node[right] {$x$};
+	\draw[->] (0,-0.5) -- (0,1.5) node[right] {};
+  
+	% Draw the Dirac delta function (centered)
+	\draw[-, thick] (1,{exp(-2)}) -- (1,{exp(1)*exp(-2)});
+	
+	% Draw an exponential function decaying from t_0
+	\draw[domain=-1.5:1, smooth, variable=\x, thick] plot ({\x}, {exp(-((\x+1)))});
+	\draw[domain=1:2, smooth, variable=\x, thick] plot ({\x}, {(exp(1)*exp(-2))*exp(-((\x-1)))});
+  
+	% Add 0 to the origin
+	\node[below] at (1,0) {$t_0$};
+	\end{scope}	% Draw the axes
+
+	\begin{scope}[shift={(5,0)}] % Adjust (5,0) to change the spacing
+	\draw[->] (-2,0) -- (2.,0) node[right] {$x$};
+	\draw[->] (0,-0.5) -- (0,1.5) node[right] {};
+  
+	% Draw the Dirac delta function (centered)
+	\draw[-, thick] (-0.5,{exp(-0.5)}) -- (-0.5,{exp(1)*exp(-0.5)});
+	
+	% Draw an exponential function decaying from t_0
+	\draw[domain=-1.5:-0.5, smooth, variable=\x, thick] plot ({\x}, {exp(-((\x+1)))});
+	\draw[domain=-0.5:2, smooth, variable=\x, thick] plot ({\x}, {(exp(1)*exp(0.5))*exp(-((\x+1.5)))});
+  
+	% Add 0 to the origin
+	\node[below] at (-0.5,0) {$t_0$};
+	\end{scope}	% Draw the axes
+  \end{tikzpicture}
+
+  Intuitively, an infinite-amplitude (multiplicative) input impulse leads to a \textit{jump} in the output, but the size of this jump is proportional to the value of \(f(t)\) immediately before the impulse. Before and after the impulse, the expected decaying exponential dynamics persists.
+\end{svgraybox}	
+ 
+
+
+
+
+
+
+
+
+\begin{thebibliography}{99.}%
+% Contribution 
+\bibitem{science-contrib} Broy, M.: Software engineering --- from auxiliary to key technologies. In: Broy, M., Dener, E. (eds.) Software Pioneers, pp. 10-13. Springer, Heidelberg (2002)
+%
+% Online Document
+\bibitem{science-online} Dod, J.: Effective substances. In: The Dictionary of Substances and Their Effects. Royal Society of Chemistry (1999) Available via DIALOG. \\
+\url{http://www.rsc.org/dose/title of subordinate document. Cited 15 Jan 1999}
+%
+% Monograph
+\bibitem{Saichev:2013} Saichev, A.I., Woyczy, W.A.: Distributions in the Physical and Engineering Sciences. Vol. 2, Appendix C, Birkhäuser-Boston (2013) 
+
+\bibitem{ThompsonGardner:1998} Thompson, S., Gardner, M.: Calculus Made Easy. 2nd ed., St. Martin's Press (1998) 
+%
+\bibitem{science-mono} Geddes, K.O., Czapor, S.R., Labahn, G.: Algorithms for Computer Algebra. Kluwer, Boston (1992) 
+%
+% Journal article
+\bibitem{science-journal} Hamburger, C.: Quasimonotonicity, regularity and duality for nonlinear systems of partial differential equations. Ann. Mat. Pura. Appl. \textbf{169}, 321--354 (1995)
+%
+% Journal article by DOI
+\bibitem{science-DOI} Slifka, M.K., Whitton, J.L.: Clinical implications of dysregulated cytokine production. J. Mol. Med. (2000) doi: 10.1007/s001090000086 
+
+\end{thebibliography}

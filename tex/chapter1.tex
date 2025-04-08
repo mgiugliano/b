@@ -1,8 +1,7 @@
-\chapter{Electrical Phenomenology of Neurons}
-\label{phen} % Always give a unique label
+\chapter{Electrical Phenomenology of Neurons}\label{phen} % Always give a unique label
 \chaptermark{phenomenology}
 
-\abstract{This chapter presents...}
+\abstract{This chapter presents bla bla}
 
 \vspace{2cm} % Adds 1 centimeter of vertical space
 
@@ -17,6 +16,185 @@
 \end{svgraybox}
 
 \clearpage
+
+\section{Preliminaries on Neuroelectronics}
+
+Before we dive into our investigative work that awaits us in this Chapter, there are four elementary concepts in Biophysics that we need to review. These are indeed key steps to address the existence of an electrostatic potential across the membrane of (any) biological cell that is not dead. They are listed below:
+
+\begin{itemize}
+	\item Densities and concentrations of particles in a volume; 
+	\item Coulomb's Force, Electrostatic Fields and Potentials; 
+	\item Mobilities of particles in a fluid;
+	\item Fluxes of particles moving through space.
+\end{itemize}
+
+You are likely already familiar with some of them and I emphasise that, with the exception of the second item on the physics of electrostatics, all the concepts listed above are just definitions. They arise from purely conventional, albeit reasonable, choices to describe phenomena, occurring in aqueous solution.
+
+\subsection{Physics and Chemistry: different jargons, same stuff}
+
+Historically, both physicists and chemists studied the fundamentals of electrochemical phenomena. It is not at all surprising that notations and habits from each fields were adopted. Both aimed at describing, at some point in space and time, how certain particles are distributed in a solution. 
+
+Imagine that a small amount of sodium chloride (i.e., the kitchen's salt) is poured in distilled water. Due to the properties of water molecules to be briefly mentioned later, each molecule of sodium chloride will spontaneously dissociate in its two components:
+
+\[ \ch{NaCl  <=> Na +  + Cl- } \]
+
+This is called \textit{dissociation} and results from the breaking of the ionic bonds, holding together sodium and chloride atoms. Note that while the sodium chloride was not electrically charged, its components are: they have opposite signs and equal magnitude (i.e., the charge of one electron). However their overall charge stays zero, as the numbers of positive and of negative ions match each other. 
+
+So how do we measure how those ions distribute in space or vary in time? It is important to have a means to do so, since any non-homogeneous distributions in space will locally reverse the electroneutrality mentioned a moment ago. Moreover, should ions freely move from one point to another over time, they will generate electrical currents, in a very good analogy to what you expect in batteries, electronic circuits, and semiconductors. 
+
+A physicist would approach the problem perhaps counting how many ions, say sodium ions, are contained in a very small volume (e.g., a tiny cube) --- taken around a certain point with coordinates \(x,y,z\) --- at a certain time \(t\). Changing the point and the time of her measurement, she would account for distribution profiles of the ions in solution. She would of course take the reference volume to be very very small, aiming at a high spatial resolution for her measurements. And yet, she does not want her final measurements to depend on her specific choice for the volume, so that a quick \textit{normalization} of her count (i.e., by the size of the sampling volume) would be in the end desirable:
+
+
+\[
+  \rho(x,y,z,t)\ =\ \frac{number\ of\ particles\ in\ a\ small\ Vol}{Vol}\ \ \ \ \ \ \left[\frac{1}{cm^3}\right]
+\]
+
+The physicist would then revert to her familiar definition of a (volumetric) density of a solute in a solvent, denoted by \( \rho \), where the reference volume has been measured (in this example) in cubic centimeters. Thus this density has units of \(cm^{ - 3}\).
+
+Facing the same task, a chemist would carry out the same operation. Used to routinely handling liquids, he would perhaps use a glass beaker instead of a measuring tape when choosing the sampling volumes. Note he would still count the number of ions, but measuring volumes say in litres and not in cubic centimeters. This is a legitimate and equivalent choice, given that \textit{a litre is a cubic decimetre, which is the volume of a cube with edge measuring} \(10\ cm\) (i.e., roughly the size of the palm of your hand). After visiting a German \textit{Biergarten} during summer, and holding in my own hand\ldots one of those large 1 litre beer glasses, I will never ever forget that
+
+\[
+	1\ L \equiv 1\ dm^3 \equiv {(10\ cm)}^3 = 1000\ cm^3. 
+\]
+
+We can probably also expect the chemist to be well aware he will likely come out with a very large count of ions even in a tiny volume, literally billions of billions of atoms! Purely by habit, he will then take a unit of count \( N_0 \), called the \textit{Avogadro's number} and corresponding to \( 6.02214076\ 10^{23} \) to express his count. Note that \( N_0 \) is a dimensionless constant and it has been called the \textit{mole} as a pure convention. You should think of using \textit{mole} as you use the words \textit{pair, quartet, dozen, decade, \ldots }, similarly used to denote quantities by non-numerical symbols. Then, instead of writing and handling numbers of the order of one billion billions, also known as a quintillion (i.e., \( 10^9\ 10^9\ =\ 10^{18} \) ), the chemist might simply note down his count as \( \approx 1.6\ \mu\ mol \).
+
+In chemistry, it is then more frequent to refer to \textit{concentration}, instead of volumetric density, although the definition is conceptually the same: the measuring units are different. That's all!  
+
+\[
+  c(x,y,z,t)\ =\ \frac{number\ of moles\ \ in\ a\ small\ Vol}{Vol}\ \ \ \ \ \ \left[\frac{mol}{L}\right]
+\]
+
+Note that the unit \(mol / L\) is called \textit{Molar} concentration, or \textit{Molarity}, and it is denoted with the capital letter \(M\). 
+
+Ultimately, in this context physicists and chemists are using different jargons, while referring to the same thing. From the definitions reviewed above, we can state that
+
+\[
+ \frac{1\ mol}{1\ L}\ \equiv 1\ M\ \equiv \frac{N_0}{1000\ cm^3} 
+\]
+
+Going from densities to concentrations and back is then a matter of a scaling factor. Say e.g.\ we have \( Na^+ \) homogeneously concentrated in solution with \( c=150\ mM \): what is the equivalent volumetric density \( \rho \)?
+
+\[
+ 150\ mM\ = \frac{150\ \ 10^{-3} mol}{1\ L}\ \equiv \frac{150\ 10^{ -3}\ N_0}{1000\ cm^3}\ \approx 0.9\ 10^{20}\ cm^{ - 3}
+\]
+
+As a quick exercise, let's express the same value using cubic micrometers by remembering that 
+
+\[
+ 1\ cm\ =\ 10^{ -2}\ m\ =\ 10^{ -2}\ 10^{6}\ \mu m\ =\ 10^{4}\ \mu m 
+\]
+
+and then
+
+\[
+ 1\ cm^{3}\ =\ (10^{4}\ \mu m)^3\ =\ 10^{12}\ \mu m^{3} 
+\]
+
+The previous equivalence now becomes
+
+\[
+ 150\ mM\ = \frac{150\ \ 10^{-3} mol}{1\ L}\ \equiv \frac{150\ 10^{ -3}\ N_0}{1000\ 10^{12}\ \mu m^3}\ \approx 0.9\ 10^{8}\ \mu m^{ - 3}
+\]
+
+\begin{svgraybox}
+	\mybox{\bf{Che\textit{mistery} of solutions}}
+	\\
+	\\
+	Even far from a bench, it is useful to know how to prepare solutions. I tell you a secret: on every box or vial of chemicals, sold by suppliers, a label is present. It indicates the \textit{Molecular Weight (M.W.)} of that substance, that is the weight (in gram) equivalent to \( 1\ mol \) of that substance. That's all we need, \ldots besides a precision balance.  
+	
+	Say we want a \(c\ =\ 150\ mM \) solution of \ch{NaCl} in a vial containing a volume \(A\ =\ 100\ mL \) of distilled water. The label on the box reads \( M.W.\ =\ 58.44\ g mol^{ - 1}\). Then, which is the amount \( X \) of \ch{NaCl} to weight, to reach \( c \) in the final volume \( A \)? Let's try first to multiply together \( c \) and \( MW \):
+
+	\[
+	 c\ MW\ =\ \frac{150\ \ 10^{-3} mol\ 58.44\ g\ mol^{ - 1}}{1\ L}\ 
+	\]
+
+	As \( mol \) cancels out, we get the amount in gram to match \( c \) but only if the final volume were \( 1\ L \). We must multiply also by the volume \( A \) (in \( L \) ):
+
+	\[
+	 X\ =\ c\ MW\ A\ =\ 150\ \ 10^{-3} mol\ 58.44\ g\ mol^{ -1}\ 100\ 10^{-3}\ L \ L^{ - 1 }\ \approx 0.87\ g 
+	\]
+
+	Note that despite \( X\ =\ c\ MW\ A \) is easy to remember, possible \textit{headaches} with solutions often come by mistaken units, or by missing that the compound we got contains an hydrated form of our substance (e.g., calcium chloride dihydrate, \ch{CaCl_{2}}\ 2\ch{H_2O}). The extra water molecules must be then accounted for, using the correct \textit{M.W.} in our calculations (i.e., \( 147.01\ g\ mol^{ - 1 } \) instead of \( 110.98\ g\ mol^{ - 1 }\) . Indeed, water has a M.W. of \( 18.01 g\ mol^{ - 1 }\) ). Note that calcium chloride is anyway highly hygroscopic, as it tends to absorb moisture in the air. Thus purchasing its hydrated form might be a good idea, as water molecules are already there and in a known amount.
+\end{svgraybox}
+
+\section*{Exercises}
+\begin{prob} \label{problem:concentrations1}
+	How many \ch{K^+} ions are contained inside a spherical cell with radius \( r\ =\ 5\ \mu m \), filled with an aqueous solution with a concentration of \( 150\ mM \) \ch{KCl} ?
+\end{prob}
+\begin{prob} \label{problem:concentrations2}
+	Assuming that all \ch{K^+} ions distribute at the inner side of the cell membrane, what is the (superficial) density of ions, measured in \( \mu m^{ -2} \) ?
+\end{prob}
+\begin{prob} \label{problem:concentrations3}
+	Electrophysiological experiments often involve preparing an \textit{artificial} cerebro-spinal fluid (ACSF), as extracellular solution, composed (e.g.) (in \( mM \) ) of 125 \ch{NaCl}, 25 \ch{NaHCO3}, 2.5 \ch{KCl}, 1.25 \ch{NaH2PO4}, 2 \ch{CaCl2}, 1 \ch{MgCl2}, and 25 glucose. Googling the websites of providers of chemical reagents for scientific research, list for each compound how much weight is required to prepare \( 5 L \) of ACSF. 	
+\end{prob}
+
+\subsection{On Coulomb, Newton, and \ldots uphill cycling}
+
+Historically,
+
+\\
+\begin{svgraybox}
+	\mybox{\bf{\textit{Fields} of vectors or of scalar}}
+	\\
+	\\
+When we study a force we describe it as a \textit{vector}, not by a single (i.e., \textit{scalar}) number. Imagine it as a tiny arrow, aligned along some direction and pointing toward a certain point. Indeed, we must capture the direction of that force, besides its intensity. In 3-D space, 3 numbers are needed to identify a vector (i.e., think of it as the spatial coordinates of the arrow's tip). So, if we refer to (e.g.) the force acting on an object placed at a certain point \(P\), we need three components. 
+We use instead the term \textit{vector field}, when we are interested not only in \( P \), but in several points of a large region of space (i.e., a \textit{field}). In this case, we associate three quantities to each point in space (e.g., \( (x,y,z) \) in Cartesian coordinates). Graphically, we may use a set of arrows whose length, direction, and orientation account for the forces acting in all given points (Figure \ref{fig:coulomb_forces}).
+
+When we describe the concentration of a solute (or the temperature) in a region of space, one number suffices at each point. We then call it a \textit{scalar field}, when we associate one quantity to each point in space. Graphically, we may use a color shading (Figure \ref{fig:coulomb_forces}), like the fading color of water vapor at the edge of a cloud. 
+
+Spoiler: quantitative reasoning on \textit{scalar fields} is way more concise than \textit{vector fields}, so in the following we will dive into electrostatic potentials instead of electrostatic force fields. 
+\end{svgraybox}
+
+\\
+\\
+\begin{minipage}[c]{\linewidth}
+\centering
+\includegraphics[width=.7\linewidth]{../Chapter1/figures/couloumb_forces.pdf}
+\captionof{figure}{Two electric charges of identical sign $+q$ and $+Q$ repels, while of opposite signs $+q$ and $-Q$ attract. Masses instead always attract each others. For conservative forces, the space surrounding a particle can be described either as a \textit{vector field} or a \textit{scalar field}.}
+%\bigskip
+\label{fig:coulomb_forces}
+\end{minipage}
+\\
+\\
+\textbf{The electrostatic force.}  We take two microscopic particles (e.g. electrons, ions, proteins, etc.), fixed at a distance $r_0$ from each other, with electric charges (i.e. measured in \(\mathrm{coulomb}\)) \(Q\) and \(q\). We remind the reader that these particles exert identical and opposite forces on each other (Fig. \ref{fig:coulomb_forces}), so that charges with the same (opposite) \textit{sign} repel (attract). The electrostatic force acting on each particle is thus a vector, acting along the straight line joining their centers, oriented depending on the sign of the product \(Q\ q\). Thanks to the Coulomb's law, we know that the intensity of this force is directly proportional to \(Q\ q\) and inversely to \(r_0^2\):
+
+$$|\vec{F}_{q-Q}|\ =\ \frac{1}{4 \pi \epsilon_r \epsilon_0} \frac{Q\ q}{r_0^2}$$
+
+We measure $|\vec{F}_{q-Q}|$ in $\mathrm{newton}$ ($\mathrm{N}$), the charge in $\mathrm{coulomb}$ ($\mathrm{C}$), and the distance in $\mathrm{meter}$ ($\mathrm{m}$). In the previous expression, the constant $\epsilon_0$ is the \textit{permittivity of the vacuum}: $8.85...\ 10^{-12}\ C^2\ m^{-2}\ N^{-1}$ (or $\mathrm{farad}$ per meter, $\mathrm{F\ m^{-1}}$). The constant $\epsilon_r$ is the \textit{relative permittivity}, is dimensionless and depends on the medium around the particles: e.g. $\epsilon_r = 80$ for water at room temperature, $\epsilon_r = 2.2$ for the hydrophobic region of a phospholipid bilayer, and $\epsilon_r = 50$ for its hydrophilic domain. $\epsilon_r$ refers to the property of the medium to be \textit{permissive} to the establishment of electrostatic forces, given a distribution of charge in it. Appearing at the denominator, this means that the larger $\epsilon_r$ the weaker the resuling force. 
+
+We note that, with the exceptions of being always attractive and 39 orders of magnitude weaker, the familiar force of gravity is formally analogous to the electrostatic force. Say we take a rain drop of mass $m$ at distance $r_0$ from the center of the Earth, whose mass is $M$: the drop and the Earth experience identical and opposite attractive forces, whose intensity is
+$$|\vec{F}_{m-M}|\ =\ - G\ \frac{M\ m}{r_0^2},$$
+
+where $G$ is the universal gravitational constant. We note that
+Figure \ref{fig:coulomb_forces} depicts a Cartesian reference system, whose horizontal axis \(r\) is aligned to the straight line joining the particles, and centered in one of them. By this conventional choice, we consider the force intensity as \textit{positive} when oriented along the direction where \(r\) increases, and \textit{negative} otherwise, making intensity and orientation consistent with the algebraic sign of \(Q\ q\) or of \(M\ m\). 
+\\
+\\
+
+\textbf{The electrostatic field.} Continuing with the analogy with the force of gravity, we often picture gravitation of the Earth as a property of the space around it: we call it \textit{gravitational field}. In fact, we refer a \textit{field} to the region of space where placing an object reveals the forces, possibly with varying intensities and directions. 
+We thus introduce the concept of an electric field $\vec{E}$, generated by a certain distribution of charged particles. $\vec{E}$ is also a vector field and is operatively defined by measuring, across all the points in space, intensity and direction of the force exerted onto a small charge $q$, taken as a \textit{probe} (Fig. \ref{fig:coulomb_forces}). After such a ``tour de force'', we normalize our measurements by $q$, expressing the field as a property of space (i.e. \textit{per unit of probe charge}). For a single particle of charge $Q$, we express the field in $\mathrm{N\ C^{-1}}$ or, equivalently, in $\mathrm{volts}$ per $\mathrm{meter}$ ($\mathrm{V\ m^{-1}}$), as:
+$$\vec{E}_{Q}\ =\ \frac{\vec{F}_{q-Q}}{q},\ whose\ intensity\ is\ \frac{1}{4 \pi \epsilon_r \epsilon_0} \frac{Q}{r_0^2}.$$
+
+\textbf{The electrostatic \textit{potential}}.
+Predicting the fate of a certain distribution of ions in solution is possible by  the \textit{superposition of the effects}: the total field in a given point is the (vector) sum of all contributions due to the single charges taken individually. However, $\vec{E}$ is rather difficult to manipulate. We instead derive an equivalent scalar quantity, easier to handle, known as \(V\) the \textit{electrostatic potential} (measured in $\mathrm{volts}$ ($\mathrm{V}$), whose knowledge supersedes that of $\vec{E}$ and whose measure in space is technically easier. 
+
+For \textit{conservative} forces, like Coulomb's and gravitation, mechanical energy is conserved: the work done (energy transferred) by moving a particle between two points in the field, does not depend on the trajectory but only on the starting and ending positions. For this case, deriving \(V\) from $\vec{E}$ is possible. Intuitively, \(V\) is the (potential) energy of the field, associated to each point in space (per unit of charge). 
+
+Lazy bikers are familiar with gravitational ``potential'': the higher they go, the more energy is potentially available to become kinetic energy, while heading downhill later. Indeed, a mass moves (by gravity) from points with higher altitude (i.e. higher potential) to points with lower altitude (i.e. lower potential). 
+
+In an electric field, \textit{positively} charged particles also move from high to low (electric) potential regions. However, \textit{negatively} charged particles move instead from low to high electric potential regions. 
+
+In practice, we recover $\vec{E}$ from \(V\) by looking at how much the latter varies in each direction of space (i.e. the gradient): there must be a certain inhomogeneity of the energy potential through space, for the force field to perform work. If \(V\) were uniform in a certain region of space (i.e. \textit{isopotential}, as in conductors) then the (force) field would be consequently null in that region. In analogy, hikers have no doubts: plateaus (i.e. same altitude and thus same gravitational potential) require little effort to oppose the effects of gravity. 
+
+In Cartesian coordinates, \(V\) is linked to the components of the electric field $\{E_x, E_y, E_z\}$ by its spatial (partial) derivative, with respect to \(x\), \(y\), and \(z\): 
+
+$$\{E_x, E_y, E_z\}\ =\ -\Bigl\{\frac{\partial V}{\partial{x}},\ \frac{\partial V}{\partial{y}},\ \frac{\partial V}{\partial{z}}\Bigr\}$$ 
+
+where the minus is purely a convention, as we call it ``positive'' the work done \textit{against} the force field.
+	
+
+
+
 
 
 \section{Bioelectrical phenomena characterize the activity of neural systems}

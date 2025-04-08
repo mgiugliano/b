@@ -28,7 +28,7 @@ To be written\dots
 	\centering
 	\includegraphics[scale=1.5]{Hodgkin_Huxley.jpg}
 	%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
-	\caption{Alan Hodgkin (1914--98) and Huxley (1917--2012).}\label{fig3:HodgkinHuxley}       % Give a unique label
+	\caption{Alan Hodgkin (1914--98) and Andrew Huxley (1917--2012).}\label{fig3:HodgkinHuxley}       % Give a unique label
 	\end{figure}
 
 \section{Going beyond the passive membranes bottlenecks}
@@ -62,7 +62,7 @@ A similar feeling is commonly embraced by physicists, who almost always first in
 In Computational Neuroscience, we should then always be mindful when adopting a very complicated description of a biophysical phenomenon, and when a very large number of parameters is a critical requirement of a model, even beyond the feasibility of their actual identification from experiments. Hopefully, we should make our models as simple as possible, and we should set the condition for its predictions to be falsified: that is when we learn, in a virtuous interaction between experiments and theory.
 
 \begin{figure}[t]
-	\sidecaption[t]
+	%\sidecaption[t]
 	\centering
 	\includegraphics[scale=.75]{Popper_Einstein_Lapique.jpg}
 	%\picplace{5cm}{2cm} % Give the correct figure height and width in cm
@@ -79,7 +79,7 @@ In my humber opinion, these become serious issues, as the the intuition and insi
 As a final central point, rich and complicated models might further make it hard for the scientist to recognize invariants or identify key mechanisms and principles, as they ultimately are hardly mathematical tractable, in terms of derivation of general results.
 
 \begin{figure}[t]
-\sidecaption[t]
+%\sidecaption[t]
 \centering
 \includegraphics[scale=.33]{A}
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
@@ -100,7 +100,7 @@ When considering neuronal activation, some variables operate much faster than ot
 A more practical approach to defining 'integrate-and-fire' neurons stems from recognizing that the action potential itself is a highly stereotyped event. Its amplitude carries little information; therefore, as a first approximation, it's reasonable to conserve computational resources and avoid detailed analysis of the action potential's exact trajectory. This perspective leads to a simplified model with only two main variables: the membrane potential and the integrated input current. This simplification is particularly relevant for cortical neurons, which exhibit sparse activity, firing action potentials only briefly before returning to a resting state. Consequently, we can describe the membrane potential's evolution up to the point of action potential firing and then resume the description after the action potential concludes.
 
 \begin{figure}[t]
-\sidecaption[t]
+%\sidecaption[t]
 \centering
 \includegraphics[scale=.33]{B}
 %\picplace{5cm}{2cm} % Give the correct figure height and width in cm
@@ -217,9 +217,56 @@ Researchers are continually developing new and improved neuron models, striving 
 
 \newpage
 \begin{svgraybox}
-	{\bf{The Dirac's delta function: \(\delta(x)\)}}
+	\mybox{\bf{The \textit{usual} first-order o.d.e.}}
 	\\
+	\\
+	There is a class of o.d.e. we frequently encounter.  We refer to it as {\bf{the}} \textit{usual and boring o.d.e.}. While not difficult to solve, it is worth a review. 
+	\begin{equation}
+		\frac{d}{dx}f(x) = a\ f(x), 
+	\end{equation}
 
+	with $a$ is a known constant number.
+	Note that it is NOT an \textit{algebraic} equation! The unknown $f$ is in fact NOT a number: it is a \textit{function} of the variable $x$ (e.g., $sin(x)$, $x^2+2$, $e^x, \cdots$).
+	It is a (differential) equation, where derivatives and linear math operations appear. We read it as: \textit{Which $f(x)$ remains roughly the same, when one takes its derivative?}.  
+	This might ring a bell, besides being featured in many \textit{memes} on the web: of course it is $e^{x}$. 
+	More precisely, there are infinite solutions:
+	\begin{equation}
+		f(x) = K\ e^{a x}, 
+	\end{equation}
+
+	where $K$ is an arbitrary constant.	
+	Try \textit{plugging} the proposed solution into the o.d.e.: it does indeed satisfy the equivalence sign.
+	
+	For the mathematically inclined readers, the o.d.e. is solved by i) separating variables and ii) integrating both sides:
+	\begin{equation}
+		\int \frac{df}{f} = \int a\ dx, 
+	\end{equation}
+
+	The left term is solved as the natural logarithm: $\ln(f)\ +\ constant$. The right term as a polynomial: $a\ x\ +\ constant$. $f$ can now be made explicit by inverting the log, upon applying the exponentiation to both sides, and remembering that the exponential of a sum is the product of the exponentials.
+	\begin{equation}
+		\ln{f}\ =\ a\ x\ +\ C,\ \ \ \ \ f\ =\ e^{\ln{f}} = e^{a\ x\ +\ C}\ =\ e^{a x}\ K 
+	\end{equation}
+
+	Finally, $K$ is identified when the \textit{initial conditions} are known: e.g., $f(0)\ =\ f_0$, picking one solution among the infinites.
+
+	Note: in the right-hand side of the o.d.e. no other term appears, besides that containing $f(x)$. We say the o.d.e. is \textit{homogeneous}. If however an extra math expression (NOT containing $f$) is present, e.g., a known function $u(x)$, we say the o.d.e. is \textit{inhomogeneous}. In the latter case, $f(x)$ is the sum of two terms: that one, obtained solving the related homogenous equation (i.e., literally omitting $u(x)$), and a \textit{particular} solution $f_p(x)$ that depends on $u(x)$. While methods exist to rigorously derive $f_p(x)$ for any $u(x)$ (i.e., the \textit{convolution integral}), often we resort to a heuristic approach: $f_p(x)$ mimics $u(x)$, apart from scaling factors. For instance, if $u(x)$ is constant also $f_p(x)$ will be (a \textit{different}) constant, if $u(x)$ contains a combination of sinusoids, polynomials, and exponentials, so will $f_p(x)$. The scaling factors can be identified by direct substitution of $f_p(x)$ in the inhomogeneous o.d.e., satisfying the equivalence as needed. 
+
+
+	
+	
+
+
+
+
+
+
+\end{svgraybox}
+
+
+\begin{svgraybox}
+	\mybox{\bf{The Dirac's delta function: \(\delta(x)\)}}
+	\\
+	\\
 	\(\delta(x)\) is due to the physicist Paul Dirac and, since its first use in 1930 for Quantum Mechanics, it found many applications in fields as diverse as Engineering and Statistics. It represents an \textit{impulse}: a sudden and extreme increase in the value of some quantity. Think of it as a huge spike, yet restricted to a tiny spot in space or in time. It is also used to express initial conditions or concentrations, when restricted to a sharp position in space or time. Beware! It stretches the concept of regular functions, as \(\sin(x), \ln(x), \cdots \), and it belong to the family of generalized  functions, called \textit{distributions}. An intuitive grasp of \(\delta(x)\) comes from its graph: it is \textit{zero} everywhere over the \(x\)-axis, except at \(x =0\) where it takes an infinite positive value.
 
 	\begin{tikzpicture}
@@ -270,8 +317,9 @@ This is normal text \dots
 
 \newpage
 \begin{svgraybox}
-	{\bf{More on Dirac's deltas}}
-
+	\mybox{\bf{More on Dirac's deltas}}
+	\\
+	\\
 	For the mathematically inclined, more precise definitions of the Dirac's Delta exist. One is in terms of the limit of a sequence of functions. For instance, we may consider a \textit{square pulse} function, \(\Pi_\Delta(x)\), that is is zero everywhere, with the exception of the interval \((-\Delta/2\ ;\ \Delta/2)\), where it takes the constant value \( 1 / \Delta \). The positive parameter \(\Delta \) specifies how \textit{fat and tall} the square pulse is. As \(\Delta \) becomes smaller and smaller, the peak amplitude of the function grows more and more, while retaining a fixed and finite (i.e., unitary) area. 
 
 	\begin{tikzpicture}
@@ -325,9 +373,9 @@ This is normal text \dots
 
 \newpage
 \begin{svgraybox}
-	{\bf{On \textit{trains} of Dirac's Deltas}}
+	\mybox{\bf{On \textit{trains} of Dirac's Deltas}}
 	\\
-
+	\\
 	It is easy to express mathematically the juxtaposition of two of more Delta functions, \textit{placed} across distinct points along the same \(x\)-axis. For instance, if these are 5 points, say \(x = - 1\), \(x =	1\), \(x = 2\), \(x = 2.5\), and \(x = 7\), then the resulting function, sketched below
 	
 	\begin{tikzpicture}
@@ -366,7 +414,7 @@ This is normal text \dots
 
 \newpage
 \begin{svgraybox}
-	{\bf{Dirac's Deltas as additive \textit{inputs} to a system}}
+	\mybox{\bf{Dirac's Deltas as additive \textit{inputs} to a system}}
 	\\
 		\begin{center}
 		\begin{tikzpicture}		
@@ -446,9 +494,9 @@ This is normal text \dots
 \newpage
 
 \begin{svgraybox}
-	{\bf{Dirac's Deltas as multiplicative \textit{inputs} to a system}}
+	\mybox{\bf{Dirac's Deltas as multiplicative \textit{inputs} to a system}}
 	\\
-
+	\\
 	If the input Delta acts as a multiplicative input, for instance as  
 
 	\begin{equation}
@@ -511,11 +559,6 @@ This is normal text \dots
 
 
 
-
-
-
-
-
 \begin{thebibliography}{99.}%
 % Contribution 
 \bibitem{science-contrib} Broy, M.: Software engineering --- from auxiliary to key technologies. In: Broy, M., Dener, E. (eds.) Software Pioneers, pp. 10-13. Springer, Heidelberg (2002)
@@ -526,10 +569,8 @@ This is normal text \dots
 %
 % Monograph
 \bibitem{Saichev:2013} Saichev, A.I., Woyczy, W.A.: Distributions in the Physical and Engineering Sciences. Vol. 2, Appendix C, Birkhäuser-Boston (2013) 
-
-\bibitem{ThompsonGardner:1998} Thompson, S., Gardner, M.: Calculus Made Easy. 2nd ed., St. Martin's Press (1998) 
 %
-\bibitem{science-mono} Geddes, K.O., Czapor, S.R., Labahn, G.: Algorithms for Computer Algebra. Kluwer, Boston (1992) 
+\bibitem{ThompsonGardner:1998} Thompson, S., Gardner, M.: Calculus Made Easy. 2nd ed., St. Martin's Press (1998) 
 %
 % Journal article
 \bibitem{science-journal} Hamburger, C.: Quasimonotonicity, regularity and duality for nonlinear systems of partial differential equations. Ann. Mat. Pura. Appl. \textbf{169}, 321--354 (1995)
@@ -538,3 +579,15 @@ This is normal text \dots
 \bibitem{science-DOI} Slifka, M.K., Whitton, J.L.: Clinical implications of dysregulated cytokine production. J. Mol. Med. (2000) doi: 10.1007/s001090000086 
 
 \end{thebibliography}
+
+\renewcommand{\refname}{Further Readings} % Redefine the section title
+\begin{thebibliography}{9} % Further readings bibliography
+  \bibitem{lamport1994latex}
+  Leslie Lamport, \emph{\LaTeX: A Document Preparation System}, Addison-Wesley, 1994.
+  \bibitem{goossens1997latex}
+  Michel Goossens, Frank Mittelbach, and Alexander Samarin, \emph{The \LaTeX Companion}, Addison-Wesley, 1997.
+  \nocite{goossens1997latex} % Include without citing
+  \nocite{lamport1994latex} % Include without citing
+\end{thebibliography}
+
+\renewcommand{\refname}{Reference s}  % Restore the default title

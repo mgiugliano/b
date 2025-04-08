@@ -29,7 +29,22 @@
 \usepackage{newtxtext}               %
 \usepackage[varvw]{newtxmath}       % selects Times Roman as basic font
 
+%------------------------------------------------------------
+\usepackage{amsmath}    % Required for equation environments
+\usepackage{chemformula} % Required for chemical formulae
+\usepackage{cleveref}  % For better referencing
+\usepackage{chngcntr} % For resetting counters (gray boxes)
+\newcounter{box}      % Define the counter for boxes
+\crefname{box}{box}{boxes} % Define the reference type for \cref
+\setcounter{box}{0}    % Set an initial value
+\newcommand{\mybox}{ % New command for numbering boxes
+  \refstepcounter{box}% Increment the counter
+  {\bf BOX \hspace{0.5em} \thebox\hspace{0.5em} --- \hspace{0.5em}}\index{Box \thebox}\label{box:\thebox}}
+
 \usepackage{tikz}
+\usetikzlibrary{external}
+\tikzexternalize[prefix={tikz_figs/}] % see in ./aux/tikz_figs/
+%------------------------------------------------------------
 
 % \makeatletter
 % \def\starparse{\@ifnextchar*{\bfstarx}{\itstar}}
@@ -58,11 +73,10 @@
 
 \author{Michele GIUGLIANO}
 \title{Computational Neuroscience:\\ A Beginner's Guide}
-\subtitle{A primer in Computational Neuroscience}
+\subtitle{A primer in Computational Neurobiology}
 \maketitle
 
 \frontmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \include{dedication}
 \include{foreword}
 \include{preface}
@@ -74,20 +88,22 @@
 \include{acronym}
 
 \mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\include{part1}
+%\include{part1}
 \include{chapter1}
-\include{chapter2}
-\include{chapter3}
-\include{chapter4}
-\include{chapter5}
-\include{chapter6}
-\include{appendix}
+%\include{chapter2}
+%\include{chapter3}
+%\include{chapter4}
+%\include{chapter5}
+%\include{chapter6}
+%\include{appendix}
 
-\include{part2}
+%\include{part2}
 
 
 \backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\include{glossary}
+%\include{glossary}
+%\include{about}
+
 %\include{solutions}
 \printindex
 
